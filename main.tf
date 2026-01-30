@@ -44,8 +44,8 @@ resource "docker_container" "ollama" {
     "OLLAMA_HOST=0.0.0.0",
     "OLLAMA_ORIGINS=*",
     "OLLAMA_SCHED_SPREAD=false", # Keep models tight
-    "OLLAMA_MAX_LOADED_MODELS=1",  # Force one model at a time for low VRAM
-    "OLLAMA_NUM_PARALLEL=1",
+    "OLLAMA_MAX_LOADED_MODELS=3",  # Force one model at a time for low VRAM
+    "OLLAMA_NUM_PARALLEL=3",
     "OLLAMA_KEEP_ALIVE=5m",   # Don't hog VRAM forever
     "OLLAMA_NOPRUNE=true"     # Keep the model cached
   ]
