@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0"
+      version = "~> 3.6"
     }
   }
 }
@@ -33,9 +33,7 @@ resource "docker_container" "ollama" {
   name  = "ollama"
   image = "ollama/ollama:latest"
 
-  gpus = "all" 
-
-  cpus = 0.5 * 4  # Allocate half of 4 CPU cores
+  cpu_set = 2
 
   ports {
     external = 11434
