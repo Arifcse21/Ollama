@@ -1,0 +1,2 @@
+# Ollama
+Ollama deployment locally
