@@ -32,7 +32,7 @@ resource "docker_volume" "open_webui_data" {
 resource "docker_container" "ollama" {
   name  = "ollama"
   image = "ollama/ollama:latest"
-
+  gpus = "all"
   cpu_set = 2
 
   ports {
