@@ -32,8 +32,8 @@ resource "docker_volume" "open_webui_data" {
 resource "docker_container" "ollama" {
   name  = "ollama"
   image = "ollama/ollama:latest"
-  gpus = "all"
-  cpu_set = 2
+  # gpus = "all"
+  # cpu_set = 2
 
   ports {
     external = 11434
@@ -46,7 +46,7 @@ resource "docker_container" "ollama" {
     "OLLAMA_SCHED_SPREAD=false", # Keep models tight
     "OLLAMA_MAX_LOADED_MODELS=3",  # Force one model at a time for low VRAM
     "OLLAMA_NUM_PARALLEL=3",
-    "OLLAMA_KEEP_ALIVE=5m",   # Don't hog VRAM forever
+    "OLLAMA_KEEP_ALIVE=15m",   # Don't hog VRAM forever
     "OLLAMA_NOPRUNE=true"     # Keep the model cached
   ]
 
@@ -60,7 +60,8 @@ resource "docker_container" "ollama" {
   }
 
   # Limit memory to 8 GB
-  memory = 8589934592
+  # memory = 8589934592
+  memory = 10737418240 # 10 GB
 
   restart = "unless-stopped"
 }
